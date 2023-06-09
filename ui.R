@@ -3,11 +3,14 @@ library(leaflet)
 library(cookies)
 library(htmltools)
 
-# add cookies
+# add cookies / style / script
 
   fluidPage(
     useShinyjs(),
   
+    
+    # check for mobile
+    
     tags$script(HTML(
       "$(document).on('shiny:connected', function(event) {
         let check = false;
@@ -23,7 +26,7 @@ library(htmltools)
       });"
     )),
     
-  
+  # add style with css
     tags$style(type = "text/css", 
                ".container-fluid {height: calc(100vh) !important; width: 100% !important; text-align: center; margin: auto;}
                 .knt_auswahl { display: flex; justify-content: center;}
@@ -37,7 +40,10 @@ library(htmltools)
       tagList(list(
         tags$head(
           tags$style(
-            "
+      
+            #add Ballinger font
+            
+                  "
           @font-face {
  font-family: 'Ballinger';
  font-weight: normal; 
@@ -75,36 +81,81 @@ library(htmltools)
 "
           )
         ),
-tags$h3(class="frage", "Wollen Sie wissen, wen Sie in den Nationalrat wählen können - und was die Kandiderenden zu konkreten Fragen sagen?"),
-tags$p(class="lead", "irgend ein lead"),
-actionButton("button_yes", "JA"),
-actionButton("button_no", "NEIN"),
-textOutput("test"),
-uiOutput("frage1_1"),
-uiOutput("select_knt"),
+
+
+# Question 1
+  
+  tags$h3(class="frage", "Wollen Sie wissen, wen Sie in den Nationalrat wählen können - und was die Kandiderenden zu konkreten Fragen sagen?"),
+
+# Lead 1
+
+  tags$p(class="lead", "irgend ein lead"),
+
+# yes / no button
+  actionButton("button_yes", "JA"),
+  actionButton("button_no", "NEIN"),
+
+# follow-up question 1
+  uiOutput("frage1_1"),
+
+# element for follow-up question 1
+  uiOutput("select_knt"),
+
+# link output for question 1
+
+
 uiOutput("linkOutput"),
-uiOutput("selected_option"),
-uiOutput("frage1"),
+
+
+# hyphen after first block of topics 
 tags$hr(),
-tags$h3(class="frage", "Neugierig, wie werden beide Kammern gewählt?"),
-tags$p(class="lead", "Der Ständerat wird im Majorzverfahren, der Nationalrat im Proporzverfahren gewählt."),
+
+
+
+################################################################################
+
+# 
+tags$h3(class="frage", "Wollen Sie wissen, wen Sie in den Ständerat wählen können?"),
+tags$p(class="lead", "Lead 2"),
 actionButton("button_yes2", "JA"),
 actionButton("button_no2", "NEIN"),
+
+
+
+textOutput("test"),
+
+
+
+# follow-up question 2
+uiOutput("frage2_1"),
+
+# element for follow-up question 1
+uiOutput("select_knt2"),
+
+# link output for question 1
+
+conditionalPanel(
+  condition = "['SG', 'AG', 'LU'].indexOf(input.knt_auswahl2) > -1",
+uiOutput("linkOutput2")
+
+),
+
+
+conditionalPanel(
+  condition = "['SG', 'AG', 'LU'].indexOf(input.knt_auswahl) > -1 && input.knt_auswahl2 == null",
+  uiOutput("linkOutput3")
+
+),
+
+
+
+
 uiOutput("testlink2")
 #,
 # textOutput("test2")
       ))
     ),
-    
-#     absolutePanel(
-#       top = "auto", left = 50, bottom = 50,
-#       width = "auto", height = "auto",
-# textOutput("test3")
-#     ),
-    
-    # textOutput("test"),
-    # 
-    # textOutput("test2")
+
 
   
 )
