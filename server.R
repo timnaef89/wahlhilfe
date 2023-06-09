@@ -19,47 +19,47 @@ function(input, output, session) {
   # catch click on first yes-button
   observeEvent(input$button_yes, {
     
-   
-   
     
-      # if first yes-button is clicked --> render follow-up question and cantonsquery
+    
+    
+    # if first yes-button is clicked --> render follow-up question and cantonsquery
+    
+    output$frage1_1 <- renderUI({
       
-      output$frage1_1 <- renderUI({
+      
+      # use list for multiple elements
+      list(
         
-        
-        # use list for multiple elements
-        list(
-          
-          #follow-up question 1 (as paragraph)
+        #follow-up question 1 (as paragraph)
         tags$p(class="lead",  "Die Wahlen finden in den Kantonen statt. In welchem Kanton leben Sie und sind Sie somit wahlberechtigt?")
-      ,
-    
+        ,
+        
         # canton selection with seletizeInput wrapped in a div for costumacation 
-      tags$div(class="knt_auswahl",
-      
-        selectizeInput(inputId = "knt_auswahl", label = "Kanton", selected = "placeholder", choices =  c("SG", "AG", "LU"),
-                     options = list(
-                       placeholder = "Wählen Sie einen Kanton",
-                       
-                       # add preview-text
-                       onInitialize = I('function() { this.setValue(""); this.$control.addClass("knt_auswahl"); }')
-                     ))
-      )
+        tags$div(class="knt_auswahl",
+                 
+                 selectizeInput(inputId = "knt_auswahl", label = "Kanton", selected = "placeholder", choices =  c("SG", "AG", "LU"),
+                                options = list(
+                                  placeholder = "Wählen Sie einen Kanton",
+                                  
+                                  # add preview-text
+                                  onInitialize = I('function() { this.setValue(""); this.$control.addClass("knt_auswahl"); }')
+                                ))
         )
-      })
-      
+      )
+    })
+    
   })
   
   
-    #if first yes-button is clicked --> disable first no-button with shinyjs (Javascript)
+  #if first yes-button is clicked --> disable first no-button with shinyjs (Javascript)
   observeEvent(input$button_yes, {
     shinyjs::disable("button_no")
   })
-
   
   
   
-    # when the canton is selected, point the link to the correct article
+  
+  # when the canton is selected, point the link to the correct article
   observeEvent(input$knt_auswahl, {
     if (input$knt_auswahl %in% c("SG", "AG", "LU")) {
       output$linkOutput <- renderUI({
@@ -74,18 +74,18 @@ function(input, output, session) {
       output$linkOutput <- renderUI(NULL)
     }
   })
-
-
+  
+  
   # if no-button is clicked, show text
   observeEvent(input$button_no, {
-
+    
     output$frage1_1 <- renderUI({
       
       
       tags$h4(
-      class="link", 
-      
-      "Natürlich wissen Sie das bereits. Gut gemacht."
+        class="link", 
+        
+        "Natürlich wissen Sie das bereits. Gut gemacht."
       )
       
       
@@ -95,30 +95,17 @@ function(input, output, session) {
     })
     
     
-    })
-    
-    ##########################################################################
-  #   
-  # observeEvent(input$button_yes2, {
-  #   
-  #   
-  #   
-  #   
-  #   output$linkOutput2 <- renderUI({
-  #       tags$h4(
-  #         class="link",
-  #         tags$a(href="https://www.tagblatt.ch", paste0("Wir zeigen Ihnen hier, was die Amtsinhaber erreicht haben und wer die Herausforderer sind"))
-  #       )
-  #     })
-  #   
-  #   
-  # })
+  })
   
-  # 1 = ja inkl. knt auswahl
+  ##############################################################################
+   # Question 2
+  ##############################################################################
   
+  
+  # linkoutput for q2 if knt is already selected in q1
   observeEvent(input$button_yes2, {
     
-   
+    
     
     
     output$linkOutput3 <- renderUI({
@@ -127,12 +114,12 @@ function(input, output, session) {
         tags$a(href="https://www.tagblatt.ch", paste0("Wir zeigen Ihnen hier, was die Amtsinhaber erreicht haben und wer die Herausforderer sind", "OUTPUT3"))
       )
     })
-   
+    
     
   })
   
   
-  
+  # if no knt is selected in q1, follow-up-q and knt-choices are displayed
   observeEvent(input$button_yes2,{
     
     
@@ -168,15 +155,15 @@ function(input, output, session) {
     }
     
   })
-      
-      
+  
+
   #if second yes-button is clicked --> disable second no-button with shinyjs (Javascript)
   observeEvent(input$button_yes2, {
     shinyjs::disable("button_no2")
   })
   
   
-  
+  # display second link if knt-choice in q2 is selected
   observeEvent(input$knt_auswahl2, {
     if (input$knt_auswahl2 %in% c("SG", "AG", "LU")) {
       output$linkOutput2 <- renderUI({
@@ -186,41 +173,159 @@ function(input, output, session) {
         )
       })
     } else {
-
+      
       # if no canton is selected, don't show anything
       output$linkOutput2 <- renderUI(NULL)
     }
   })
   
-
-
   
-  
-  
-  output$test <- renderPrint({
+  # if no-button is clicked, show text
+  observeEvent(input$button_no2, {
     
-    if(is.null(input$knt_auswahl) || !input$knt_auswahl %in% c("SG", "AG")){
-      
-      print("nichts ausgewählt")
+    output$frage2_1 <- renderUI({
       
       
-    }else{
+      tags$h4(
+        class="link", 
+        
+        "Natürlich wissen Sie das bereits. Gut gemacht."
+      )
       
-      print("jetzt schon")
       
       
-    }
+      
+      
+    })
+  
     
   })
   
   
+  ##############################################################################
+  # Question 3
+  ##############################################################################
   
   
-################################################################################ 
+
+    # catch click on first yes-button
+    observeEvent(input$button_yes3, {
+
+
+
+
+
+
+# if first yes-button is clicked --> render follow-up question and cantonsquery
+
+output$frage3_1 <- renderUI({
+
+  # use list for multiple elements
+  list(
+
+    #follow-up question 3 (as paragraph)
+    tags$p(class="lead",  "Ukraine-Krieg, CS-Debakel oder doch Krankenkassen und Inflation - was beschäftigt uns im Wahlkampf am meisten."),
+
+    # topic selection with seletizeInput wrapped in a div for costumacation
+    tags$div(class="knt_auswahl",
+
+             selectizeInput(inputId = "topic_choice",
+                            label = "Kanton",
+                            selected = "placeholder",
+                            choices =  c("Ukraine-Krieg", "CS-Debakel", "Krankenkassen", "Inflation"),
+                            options = list(
+                              placeholder = "Wählen Sie ein Thema",
+
+                              # add preview-text
+                              onInitialize = I('function() { this.setValue(""); this.$control.addClass("knt_auswahl"); }')
+                            ))
+    )
+  )
+})
+
+
+    })
+
+
+
+
+  # display second link if knt-choice in q2 is selected
+  observeEvent(input$topic_choice, {
+    if (input$topic_choice %in% c("Ukraine-Krieg", "CS-Debakel", "Krankenkassen", "Inflation")) {
+      output$linkOutput4 <- renderUI({
+        tags$h4(
+          class="link",
+          tags$a(href="https://www.tagblatt.ch", paste0("Das sagen die Parteien zum Thema ", input$topic_choice))
+        )
+      })
+    } else {
+      
+      # if no canton is selected, don't show anything
+      output$linkOutput4 <- renderUI(NULL)
+    }
+  })
   
-                              #  test for mobile  #
   
-################################################################################  
+  
+  # if no-button is clicked, show text
+  observeEvent(input$button_no3, {
+    
+    output$frage3_1 <- renderUI({
+      
+      
+      tags$h4(
+        class="link", 
+        
+        "Natürlich wissen Sie das bereits. Gut gemacht."
+      )
+      
+      
+      
+      
+      
+    })
+    
+    
+  })
+  
+  observeEvent(input$button_yes3, {
+    shinyjs::disable("button_no3")
+  })
+
+    
+    ##############################################################################
+    # DEBUGGING STUFF #
+    ##############################################################################
+    
+    
+    output$test <- renderPrint({
+      
+      if(is.null(input$knt_auswahl) || !input$knt_auswahl %in% c("SG", "AG")){
+        
+        print("nichts ausgewählt")
+        
+        
+      }else{
+        
+        print("jetzt schon")
+        
+        
+      }
+      
+    })
+  
+  
+
+    
+
+  
+  
+  
+  ################################################################################ 
+  
+  #  test for mobile  #
+  
+  ################################################################################  
   
   output$test2 <- renderUI(
     {
@@ -239,6 +344,6 @@ function(input, output, session) {
   )
   
   
-
+  
   
 }
