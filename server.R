@@ -123,7 +123,7 @@ function(input, output, session) {
   observeEvent(input$button_yes2,{
     
     
-    if(is.null(input$knt_auswahl) || !input$knt_auswahl %in% c("SG", "AG")){
+    if(is.null(input$knt_auswahl) || !input$knt_auswahl %in% c("SG", "AG", "LU")){
       
       
       output$frage2_1 <- renderUI({
@@ -291,9 +291,115 @@ output$frage3_1 <- renderUI({
   observeEvent(input$button_yes3, {
     shinyjs::disable("button_no3")
   })
-
+  
+  
+  
+  ##############################################################################
+  # Question 4
+  ##############################################################################
+  
+  
+  
+  
+  
+  
+  # display second link if knt-choice in q2 is selected
+  observeEvent(input$button_yes4, {
+      output$linkOutput5 <- renderUI({
+        tags$h4(
+          class="link",
+          tags$a(href="https://www.tagblatt.ch", paste0("Das sagen die Parteien zum Thema ", input$topic_choice))
+        )
+      })
+  })
+  
+  
+  
+  # if no-button is clicked, show text
+  observeEvent(input$button_no4, {
     
-    ##############################################################################
+    output$linkOutput5 <- renderUI({
+      
+      
+      tags$h4(
+        class="link", 
+        
+        "Natürlich wissen Sie das bereits. Gut gemacht."
+      )
+      
+      
+      
+      
+      
+    })
+    
+    
+  })
+  
+  observeEvent(input$button_yes4, {
+    shinyjs::disable("button_no4")
+  })
+  
+  
+  
+  ##############################################################################
+  # Question simple yes/no questions
+  ##############################################################################
+  generateShinyServer(input, output, session,
+                      yes = "button_yes9",
+                      no = "button_no9",
+                      outputlink = "linkOutput10",
+                      link = "www.vi.nl",
+                      linktext = "Dafür haben wir einen Ratgeber-Artikel für Sie",
+                      nein_text = "natürlich.")
+  
+  
+  generateShinyServer(input, output, session,
+                      yes = "button_yes10",
+                      no = "button_no10",
+                      outputlink = "linkOutput11",
+                      link = "www.vi.nl",
+                      linktext = "Wir bringen hier Licht ins Dickicht dieser Tools und Hilfsmittel",
+                      nein_text = "natürlich.") 
+  
+  generateShinyServer(input, output, session,
+                      yes = "button_yes11",
+                      no = "button_no11",
+                      outputlink = "linkOutput12",
+                      link = "www.vi.nl",
+                      linktext = "Das sagen Umfragen und Prognosen zum Ausgang der Wahlen, mit diesen Gewinnen rechnen die Parteien",
+                      nein_text = "natürlich.")  
+  
+  
+
+  generateShinyServer(input, output, session,
+                      yes = "button_yes12",
+                      no = "button_no12",
+                      outputlink = "linkOutput13",
+                      link = "www.vi.nl",
+                      linktext = "Hier finden Sie ihren Guide für den grossen Tag",
+                      nein_text = "natürlich.")  
+  
+    
+
+  
+  ##############################################################################
+  # Question DROPDOWN yes/no questions
+  ##############################################################################
+  
+  
+  generateShinyServer_dropdown(input, output, session,
+                               yes = paste0("button_yes", 13),
+                               no = paste0("button_no", 13),
+                               outputlink = "linkOutput14",
+                               link = "www.vi.nl",
+                               linktext = "Hier finden Sie ihren Guide für den grossen Tag13",
+                               nein_text = "natürlich.13",
+                               number = 13)
+  
+  
+  
+      ##############################################################################
     # DEBUGGING STUFF #
     ##############################################################################
     
@@ -316,7 +422,9 @@ output$frage3_1 <- renderUI({
   
   
 
-    
+    output$testtest <- renderPrint({
+      print("asdf")
+    })
 
   
   

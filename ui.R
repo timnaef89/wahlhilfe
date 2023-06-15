@@ -2,6 +2,9 @@ library(shiny)
 library(leaflet)
 library(cookies)
 library(htmltools)
+library(shinyjs)
+
+source("helperfunctions.R")
 
 # add cookies / style / script
 
@@ -177,14 +180,76 @@ uiOutput("linkOutput4"),
 # hyphen after first block of topics 
 tags$hr(),
 
+
 ##############################################################################
-# DEBBUGING STUFF
+# Question 4
 ##############################################################################
+#
+# # fourth question
+tags$h3(class="frage", "Wie werden sich die Wahlen auswirken auf konkrete Politfragen: Interessiert Sie das?"),
+#
+#
+# # fourth lead
+tags$p(class="lead", "Das Parlament in Bern entscheidet über wichtige Fragen, aber längst nicht über alles. Was sich je nach Wahlsieger ändern könnte..."),
+#
+# # yes/no button 4
+actionButton("button_yes4", "JA"),
+actionButton("button_no4", "NEIN"),
 
 
-textOutput("test"),
+#
 
-uiOutput("testlink2")
+uiOutput("linkOutput5"),
+
+# hyphen after first block of topics 
+tags$hr(),
+
+
+# simple yes/no questions with function
+
+
+generateShinyUI(question = "Wollen Sie genauer wissen, wie Wählen funktioniert?", 
+                lead = "Proporz, Majorz, Kumulieren, Panaschieren, Listenverbindung - das Wählen in der Schweiz hat es in sich. Wir zeigen Ihnen, worauf Sie beim Ausfüllen des Wahlzettels achten müssen.", 
+                number = 9),
+
+
+generateShinyUI(question = "Welche Rolle spielen Wahlumfragen? Was ist Smartvote?", 
+                lead = "Diverse Hilfsmittel unterstützen Sie dabei, die Kandidatinnen und Kandidaten besser kennenzulernen und deren Wahlchancen einschätzen zu können", 
+                number = 10),
+
+generateShinyUI(question = "Wollen Sie erfahren, wie sich die aktuelle Ausgangslage für die Wahlen präsentiert?", 
+                lead = "Wahltag ist Zahltag - aber schon jetzt haben Medien und Politexperten ihre Prognosen aufgestellt, wer gewinnt und wer verliert.", 
+                number = 11),
+
+generateShinyUI(question = "Sollen wir Ihnen schon mal aufzeigen, wie Sie am Wahltag erfahren, wer gewählt und wer abgewählt ist?", 
+                lead = "Am 22. Oktober ist es soweit: Dann wissen wir, wer die nächsten vier Jahre im Parlament sitzt.", 
+                number = 12),
+
+
+
+
+# question with dropdown
+
+
+generateShinyUI_dropdown(question = "hier ist eine dropdownfrage",
+                         lead = "hier ist ein dropdown_lead",
+                         number = 13),
+
+
+# ,
+# 
+# 
+# 
+# ##############################################################################
+# # DEBBUGING STUFF
+# ##############################################################################
+# 
+# 
+# textOutput("test"),
+# 
+# uiOutput("testlink2")
+
+textOutput("testtest")
 #,
 # textOutput("test2")
     ))
