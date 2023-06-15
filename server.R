@@ -2,7 +2,6 @@
 
 library(shiny)
 library(tidyverse)
-library(leaflet)
 library(htmltools)
 library(htmlwidgets)
 library(cookies)
@@ -67,12 +66,18 @@ function(input, output, session) {
           class="link",
           tags$a(href="https://www.tagblatt.ch", paste0("Hier finden Sie eine Übersicht aller Kandidatinnen und Kandidaten für den Nationalrat im Kanton ", input$knt_auswahl))
         )
+        
+        
       })
+      
+      
+      
     } else {
       
       # if no canton is selected, don't show anything
       output$linkOutput <- renderUI(NULL)
     }
+  
   })
   
   
@@ -92,10 +97,31 @@ function(input, output, session) {
       
       
       
+      
+      
     })
     
     
   })
+  
+  
+  
+# folgende codezeilen auskommentieren, um dropdown auch nach der auswahl anzuzeigen  
+  
+  observeEvent(input$knt_auswahl, {
+    if (input$knt_auswahl %in% c("SG", "AG", "LU")) {
+      shinyjs::hide("knt_auswahl")
+    }
+  })
+  
+  
+  observeEvent(input$knt_auswahl2, {
+    if (input$knt_auswahl2 %in% c("SG", "AG", "LU")) {
+      shinyjs::hide("knt_auswahl2")
+    }
+  })
+  
+  #
   
   ##############################################################################
    # Question 2
@@ -156,6 +182,8 @@ function(input, output, session) {
     
   })
   
+  
+  
 
   #if second yes-button is clicked --> disable second no-button with shinyjs (Javascript)
   observeEvent(input$button_yes2, {
@@ -179,6 +207,8 @@ function(input, output, session) {
     }
   })
   
+  
+
   
   # if no-button is clicked, show text
   observeEvent(input$button_no2, {
@@ -392,10 +422,11 @@ output$frage3_1 <- renderUI({
                                yes = paste0("button_yes", 13),
                                no = paste0("button_no", 13),
                                outputlink = "linkOutput14",
-                               link = "www.vi.nl",
-                               linktext = "Hier finden Sie ihren Guide für den grossen Tag13",
-                               nein_text = "natürlich.13",
-                               number = 13)
+                               link = "www.bfs.ch",
+                               linktext = "Das steht für diese Parteien auf dem Spiel und das sagen die Parteipräsidenten.",
+                               nein_text = "Sie wissen bereits alles über die Parteien.",
+                               number = 13,
+                               choices = c("SP", "SVP", "Mitte", "FDP", "Grüne"))
   
   
   

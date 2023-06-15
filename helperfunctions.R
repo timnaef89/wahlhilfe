@@ -73,7 +73,7 @@ library(shinyjs)
 library(shiny)
 library(shinyjs)
 
-generateShinyUI_dropdown <- function(question, lead, number) {
+generateShinyUI_dropdown <- function(question, lead, number, choices, label) {
   ui <- fixedPage(
     # Second question
     tags$h3(class = "frage", question),
@@ -91,9 +91,9 @@ generateShinyUI_dropdown <- function(question, lead, number) {
       style = "display: none;",
       selectizeInput(
         inputId = paste0("topic_choice", number),
-        label = "Kanton",
+        label = label,
         selected = "placeholder",
-        choices = c("Ukraine-Krieg", "CS-Debakel", "Krankenkassen", "Inflation"),
+        choices = choices,
         options = list(
           placeholder = "Wählen Sie ein Thema",
           onInitialize = I('function() { this.setValue(""); this.$control.addClass("knt_auswahl"); }')
@@ -115,15 +115,12 @@ generateShinyUI_dropdown <- function(question, lead, number) {
 
 
 
-##############################################################################
-# Question 3
-##############################################################################
-
 generateShinyServer_dropdown <- function(input, output, session,
                                          yes, no, outputlink, link, 
                                          linktext, 
                                          nein_text = "Das ist ein Neintext Dropdown",
-                                         number) {
+                                         number,
+                                         choices) {
   
   # Show/hide dropdown menu based on button click
   observeEvent(input[[yes]], {
@@ -137,7 +134,7 @@ generateShinyServer_dropdown <- function(input, output, session,
   
   # Display second link if topic choice is selected
   observeEvent(input[[paste0("topic_choice", number)]], {
-    if (input[[paste0("topic_choice", number)]] %in% c("Ukraine-Krieg", "CS-Debakel", "Krankenkassen", "Inflation")) {
+    if (input[[paste0("topic_choice", number)]] %in% choices) {
       output[[outputlink]] <- renderUI({
         tags$h4(
           class = "link",

@@ -145,6 +145,9 @@ conditionalPanel(
   
 ),
 
+
+
+
 # linkoutput for question 2 / if there is already a canton selected in q1
 conditionalPanel(
   condition = "['SG', 'AG', 'LU'].indexOf(input.knt_auswahl) > -1 && input.knt_auswahl2 == null",
@@ -231,9 +234,11 @@ generateShinyUI(question = "Sollen wir Ihnen schon mal aufzeigen, wie Sie am Wah
 # question with dropdown
 
 
-generateShinyUI_dropdown(question = "hier ist eine dropdownfrage",
-                         lead = "hier ist ein dropdown_lead",
-                         number = 13),
+generateShinyUI_dropdown(question = "Neugierig, wie sich die Ausgangslage für die einzelnen Parteien präsentiert?",
+                         lead = "Wählen Sie aus, für welche Partei Sie sich interessieren?",
+                         number = 13,
+                         label = "Parteien",
+                         choices = c("SP", "SVP", "Mitte", "FDP", "Grüne")),
 
 
 # ,
