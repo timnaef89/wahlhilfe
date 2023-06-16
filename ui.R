@@ -38,6 +38,87 @@ fluidPage(
                 .frage {font-family: 'Ballinger'; font-weight: 700;}
                 .lead {font-family: 'Ballinger'; font-weight: 400;}
                 .knt_auswahl {font-family: 'Ballinger'; margin: auto;}
+             
+             
+             
+             
+  .teaser {
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 10px;
+    max-width: 600px;
+  }
+    .legendimg img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .spitzmarke.logo {
+      width: 30px;
+      padding-bottom: 8px;
+    }
+    .spitzmarke.text {
+      padding-bottom: 8px;
+      letter-spacing: .64px;
+    }
+    .articletitle {
+      padding-bottom: 8px;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22.5px;
+      text-align: left;
+    }
+    .beschreibung {
+      font-size: 14px;
+      color: #636671;
+    }
+    .spitzmarke {
+      padding-bottom: 8px;
+      color: #888B95;
+      font-size: 14px;
+      font-weight: 700;
+      vertical-align: middle;
+      text-align: left;
+    }
+    .legendimg {
+      padding-right: 16px;
+      vertical-align: top;
+    }
+    .spitzmarke div {
+      display: inline-block;
+      color: white;
+      background-color: black;
+      padding-left: 4.32px;
+      padding-top: 1.8px;
+      padding-bottom: 3.87;
+      padding-right: 4.32px;
+      margin-right: 4px;
+    }
+    table,
+    tr,
+    td {
+      padding: 0px;
+      margin: 0px;
+    }
+    .sup {
+      padding-left: 2.2px;
+      padding-bottom: 2.26px;
+    }
+    .place {
+      padding-right: 1px;
+    }
+    .time {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    .level {
+      padding-left: 8px;
+    }
+
+
                "),
   browsable(
     tagList(list(
@@ -84,6 +165,41 @@ fluidPage(
 "
         )
       ),
+
+
+
+
+
+
+# div(
+#   class = "teaser teaser__content teaser__content--articlelist-a",
+#   div(
+#     class = "teaser__image",
+#     img(src = "https://example.com/teaser_image.jpg")
+#   ),
+#   div(
+#     h2("Heuschnupfen: Allergologe in der Ostschweiz"),
+#     p("Lesen Sie den Artikel auf der Tagblatt-Website:"),
+#     a(
+#       href = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+#       "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228"
+#     )
+#   )
+# )
+    
+    
+
+
+# teaserUI(
+#   title = "Teaser 1", 
+#   lead = "Einleitungstext 1", 
+#   image = "https://img.chmedia.ch/2023/06/15/cb546d40-d8e7-4e18-8be7-11d919037fca.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=5516,3677,x397,y459", 
+#   spitzmarke = "Spitzmarke 1", 
+#   link = "https://tagblatt.ch", 
+#   place = "Ort 1", 
+#   time = "Zeit 1", 
+#   level = "Level 1"
+# ),
 
 
 # Question 1

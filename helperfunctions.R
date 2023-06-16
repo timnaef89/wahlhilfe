@@ -39,9 +39,14 @@ generateShinyServer <- function(input, output, session,
   
   observeEvent(input[[yes]], {
     output[[outputlink]] <- renderUI({
-      tags$h4(
-        class = "link",
-        tags$a(href = paste0("https://",link), paste0(linktext))
+      renderTeaser(
+        teaserimage = "https://img.chmedia.ch/2022/04/24/18046014-3ea0-4f83-b41e-132fecfa140e.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=1024,683,x0,y0",
+        spitzmarke = "SPITZMARKE",
+        title = "Jeder Fünfte leidet an Heuschnupfen – mit diesen Tipps kommen Sie besser durch die Pollensaison",
+        link = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+        place = "Vorname, Nachname",
+        time = "",
+        level = ""
       )
     })
     
@@ -136,9 +141,14 @@ generateShinyServer_dropdown <- function(input, output, session,
   observeEvent(input[[paste0("topic_choice", number)]], {
     if (input[[paste0("topic_choice", number)]] %in% choices) {
       output[[outputlink]] <- renderUI({
-        tags$h4(
-          class = "link",
-          tags$a(href = paste0("https://", link), paste0(linktext))
+        renderTeaser(
+          teaserimage = "https://img.chmedia.ch/2022/04/24/18046014-3ea0-4f83-b41e-132fecfa140e.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=1024,683,x0,y0",
+          spitzmarke = "SPITZMARKE",
+          title = "Jeder Fünfte leidet an Heuschnupfen – mit diesen Tipps kommen Sie besser durch die Pollensaison",
+          link = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+          place = "Vorname, Nachname",
+          time = "",
+          level = ""
         )
       })
       
@@ -148,4 +158,18 @@ generateShinyServer_dropdown <- function(input, output, session,
       output[[outputlink]] <- renderUI(NULL)
     }
   })
+}
+
+
+
+
+################################################################################
+
+# Teaser-UI-Funktion zur Erstellung eines einzelnen Teasers
+renderTeaser <- function(teaserimage, spitzmarke, title, link, place, time, level) {
+  HTML(paste0(
+    '<div class="teaser">',
+    '<table><tr><td rowspan="3" class="legendimg"><a href="', link, '" target="_top"><img src="', teaserimage, '"></a></td><td class="spitzmarke logo"><div><table><tr><td class="aboplus">abo</td><td class="sup">+</td></tr></table></div></td><td class="spitzmarke text">', spitzmarke, '</td></tr><tr><td class="articletitle" colspan=2><a href="', link, '" target="_top">', title, '</a></td></tr><tr><td class="beschreibung" colspan=2><table><tr><td class="place">', place, '</td><td>', ifelse(time != "", "&centerdot;", ""), '</td><td class="time">', time, '</td><td>', ifelse(level != "", "&centerdot;", ""), '</td><td class="level">', level, '</td></tr></table></td></tr></table>',
+    '</div>'
+  ))
 }

@@ -62,9 +62,14 @@ function(input, output, session) {
   observeEvent(input$knt_auswahl, {
     if (input$knt_auswahl %in% c("SG", "AG", "LU")) {
       output$linkOutput <- renderUI({
-        tags$h4(
-          class="link",
-          tags$a(href="https://www.tagblatt.ch", paste0("Hier finden Sie eine Übersicht aller Kandidatinnen und Kandidaten für den Nationalrat im Kanton ", input$knt_auswahl))
+        renderTeaser(
+          teaserimage = "https://img.chmedia.ch/2022/04/24/18046014-3ea0-4f83-b41e-132fecfa140e.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=1024,683,x0,y0",
+          spitzmarke = "SPITZMARKE",
+          title = "Jeder Fünfte leidet an Heuschnupfen – mit diesen Tipps kommen Sie besser durch die Pollensaison",
+          link = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+          place = "Vorname, Nachname",
+          time = "",
+          level = ""
         )
         
         
@@ -135,9 +140,14 @@ function(input, output, session) {
     
     
     output$linkOutput3 <- renderUI({
-      tags$h4(
-        class="link",
-        tags$a(href="https://www.tagblatt.ch", paste0("Wir zeigen Ihnen hier, was die Amtsinhaber erreicht haben und wer die Herausforderer sind", "OUTPUT3"))
+      renderTeaser(
+        teaserimage = "https://img.chmedia.ch/2022/04/24/18046014-3ea0-4f83-b41e-132fecfa140e.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=1024,683,x0,y0",
+        spitzmarke = "SPITZMARKE",
+        title = "Jeder Fünfte leidet an Heuschnupfen – mit diesen Tipps kommen Sie besser durch die Pollensaison",
+        link = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+        place = "Vorname, Nachname",
+        time = "",
+        level = ""
       )
     })
     
@@ -195,9 +205,14 @@ function(input, output, session) {
   observeEvent(input$knt_auswahl2, {
     if (input$knt_auswahl2 %in% c("SG", "AG", "LU")) {
       output$linkOutput2 <- renderUI({
-        tags$h4(
-          class="link",
-          tags$a(href="https://www.tagblatt.ch", paste0("Wir zeigen Ihnen hier, was die Amtsinhaber erreicht haben und wer die Herausforderer sind", "OUTPUT2"))
+        renderTeaser(
+          teaserimage = "https://img.chmedia.ch/2022/04/24/18046014-3ea0-4f83-b41e-132fecfa140e.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=1024,683,x0,y0",
+          spitzmarke = "SPITZMARKE",
+          title = "Jeder Fünfte leidet an Heuschnupfen – mit diesen Tipps kommen Sie besser durch die Pollensaison",
+          link = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+          place = "Vorname, Nachname",
+          time = "",
+          level = ""
         )
       })
     } else {
@@ -283,9 +298,14 @@ output$frage3_1 <- renderUI({
   observeEvent(input$topic_choice, {
     if (input$topic_choice %in% c("Ukraine-Krieg", "CS-Debakel", "Krankenkassen", "Inflation")) {
       output$linkOutput4 <- renderUI({
-        tags$h4(
-          class="link",
-          tags$a(href="https://www.tagblatt.ch", paste0("Das sagen die Parteien zum Thema ", input$topic_choice))
+        renderTeaser(
+          teaserimage = "https://img.chmedia.ch/2022/04/24/18046014-3ea0-4f83-b41e-132fecfa140e.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=1024,683,x0,y0",
+          spitzmarke = "SPITZMARKE",
+          title = "Jeder Fünfte leidet an Heuschnupfen – mit diesen Tipps kommen Sie besser durch die Pollensaison",
+          link = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+          place = "Vorname, Nachname",
+          time = "",
+          level = ""
         )
       })
     } else {
@@ -336,9 +356,14 @@ output$frage3_1 <- renderUI({
   # display second link if knt-choice in q2 is selected
   observeEvent(input$button_yes4, {
       output$linkOutput5 <- renderUI({
-        tags$h4(
-          class="link",
-          tags$a(href="https://www.tagblatt.ch", paste0("Das sagen die Parteien zum Thema ", input$topic_choice))
+        renderTeaser(
+          teaserimage = "https://img.chmedia.ch/2022/04/24/18046014-3ea0-4f83-b41e-132fecfa140e.jpeg?width=1360&height=906&fit=bounds&quality=75&auto=webp&crop=1024,683,x0,y0",
+          spitzmarke = "SPITZMARKE",
+          title = "Jeder Fünfte leidet an Heuschnupfen – mit diesen Tipps kommen Sie besser durch die Pollensaison",
+          link = "https://www.tagblatt.ch/ostschweiz/ressort-ostschweiz/heuschnupfen-allergologe-apotheken-ostschweiz-ld.2472228",
+          place = "Vorname, Nachname",
+          time = "",
+          level = ""
         )
       })
   })
