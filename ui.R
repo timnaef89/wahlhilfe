@@ -31,7 +31,7 @@ fluidPage(
   
   # add style with css
   tags$style(type = "text/css", 
-             ".container-fluid {height: calc(100vh) !important; width: 100% !important; text-align: center; margin: auto;}
+             ".container-fluid {width: 100% !important; text-align: center; margin: auto;}
                 .knt_auswahl { display: flex; justify-content: center;}
                 #knt_auswahl { width: 50%;}     
                 .btn-default {font-family: 'Ballinger';}
